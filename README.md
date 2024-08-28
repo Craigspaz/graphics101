@@ -49,19 +49,17 @@ file named `CMakeLists.txt`.
 
     * You can ask `cmake` to generate a build file for your IDE. For example:
     
-        * `cmake -G Xcode ..` will generate a project for the Xcode IDE on macOS.
-        * `cmake -G "Visual Studio 16 2019" ..` will generate a project for the Visual Studio 2019 IDE on Windows. `cmake` should find your Visual Studio installation automatically. If it isn't, reinstall cmake (it finds compilers during installation) and make sure you are running from a [Visual Studio Developer Command Prompt](https://docs.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022).
+        * `cmake -B build-xcode -G Xcode` will generate a project for the Xcode IDE on macOS in a folder named `build-xcode`.
+        * `cmake -B build-vs -G "Visual Studio 16 2019"` will generate a project for the Visual Studio 2019 IDE on Windows in a folder named `build-vs`. `cmake` should find your Visual Studio installation automatically. If it isn't, reinstall cmake (it finds compilers during installation) and make sure you are running from a [Visual Studio Developer Command Prompt](https://docs.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022).
 
     * If you aren't using an IDE, from inside each folder, run:
     
-            mkdir build
-            cd build
-            cmake ..
+            cmake -B build
         
-        Then, to compile the program, just type `make` or `cmake --build .`. There are some useful flags you can pass to `cmake`. Try:
+        Then, to compile the program, just type `cmake --build build-dir`. There are some useful flags you can pass to `cmake`. Try:
         
-        * `cmake -DCMAKE_BUILD_TYPE=Debug ..` to specify compilation with debug information for use with a debugger.
-        * `cmake -DCMAKE_BUILD_TYPE=Release ..` to specify compilation of an optimized build. Your code will run much faster.
-        * `cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..` to specify compilation of an optimized build with debug information. Your code will run much faster, but you will still sort of be able to debug it (compilers move code around when optimizing).
+        * `cmake -B build-dir -DCMAKE_BUILD_TYPE=Debug` to specify compilation with debug information for use with a debugger.
+        * `cmake -B build-dir -DCMAKE_BUILD_TYPE=Release` to specify compilation of an optimized build. Your code will run much faster.
+        * `cmake -B build-dir -DCMAKE_BUILD_TYPE=RelWithDebInfo` to specify compilation of an optimized build with debug information. Your code will run much faster, but you will still sort of be able to debug it (compilers move code around when optimizing).
 
-* Build and run the code. Make your changes. Write a `Notes.txt`. Run `cpack` (or `make zip` or `cmake --build . --target zip`) to generate a `.zip` file. Hand in the `.zip` file.
+* Build and run the code. Make your changes. Write a `Notes.txt`. Run `cpack` (or `make zip` or `cmake --build build-dir --target zip`) to generate a `.zip` file. Hand in the `.zip` file.
